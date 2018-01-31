@@ -1,3 +1,3 @@
 export const getRoom = (state) => {
-	return state.room
+  return state.room
 }
