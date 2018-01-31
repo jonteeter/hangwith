@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <form action="#" class="join"> 
-    </form>
+    
       <h1>Start Chatting.</h1>
 
       <label for="room" class="label">Room ID</label>
@@ -13,12 +13,13 @@
       <button type="submit" class="button button--primary">
         Join
       </button>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'home',
   data () {
     return {
       //
@@ -27,3 +28,17 @@ export default {
 }
 </script>
 
+<style lang="scss">
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .join {
+    width: 100%;
+    max-width: 400px;
+  }
+</style>
