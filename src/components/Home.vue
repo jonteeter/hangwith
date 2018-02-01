@@ -25,7 +25,7 @@ export default {
   name: 'home',
   data () {
     return {
-      room: uuid(),
+      room: this.$route.query.room || uuid(),
       name: ''
     }
   },
