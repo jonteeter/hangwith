@@ -20,6 +20,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import uuid from 'uuid/v4'
+import SimpleWebRTC from 'simplewebrtc'
 
 export default {
   name: 'home',
@@ -35,6 +36,11 @@ export default {
     }),
     join () {
       this.setMeName(this.name)
+
+      window.webrtc = new SimpleWebRTC({
+        autoRequestMedia: true,
+        nick: this.name
+      })
 
       this.$router.push({
         name: 'room',

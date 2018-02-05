@@ -1,9 +1,9 @@
 <template>
   <div class="room">
   	<div class="people" id="people">
-  		<div class="person" v-for="x in 10">
+  		<div class="person">
   			<div class="person__video">
-  				<video></video>
+  				<video ref="me"></video>
   			</div>
   			<div class="person__name">
   				Jon
@@ -17,6 +17,19 @@
   export default {
     props: {
       room: String
+    },
+    mounted () {
+      window.webrtc.joinRoom(this.room)
+
+      window.webrtc.on('localStream', (stream) => {
+        let attachMediaStream = require('attachmediastream')
+
+        attachMediaStream(stream, this.$refs.me, {
+          autoplay: true,
+          mirror: true,
+          muted: true
+        })
+      })
     }
   }
 </script>
