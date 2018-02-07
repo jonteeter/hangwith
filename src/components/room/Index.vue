@@ -33,7 +33,8 @@
     },
     methods: {
       ...mapMutations({
-        addPeer: 'addPeer'
+        addPeer: 'addPeer',
+        removePeer: 'removePeer'
       })
     },
     mounted () {
@@ -41,6 +42,10 @@
 
       window.webrtc.on('videoAdded', (video, peer) => {
         this.addPeer({ video, peer })
+      })
+
+      window.webrtc.on('videoRemoved', (vidoe, peer) => {
+        this.removePeer(peer)
       })
 
       window.webrtc.on('localStream', (stream) => {
