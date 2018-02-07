@@ -1,7 +1,8 @@
 <template>
 	<ul class="controls">
 		<li class="controls__item">
-			<a href="" class="controls__link">Mute me</a>
+			<a href="" class="controls__link" v-if="user.muted" @click.prevent="unmuteMe">Unmute me</a>
+			<a href="" class="controls__link" v-else @click.prevent="muteMe">Mute me</a>
 		</li>
 		<li class="controls__item">
 			<a href="" class="controls__link">Pause video</a>
@@ -10,8 +11,27 @@
 </template>
 
 <script>
-  export default {
+  import { mapGetters, mapMutations } from 'vuex'
 
+  export default {
+    computed: {
+      ...mapGetters({
+        user: 'getUser'
+      })
+    },
+    methods: {
+      ...mapMutations({
+        setMuted: 'setMuted'
+      }),
+      muteMe () {
+        window.webrtc.mute()
+        this.setMuted(true)
+      },
+      unmuteMe () {
+        window.webrtc.unmute()
+        this.setMuted(false)
+      }
+    }
   }
 </script>
 
